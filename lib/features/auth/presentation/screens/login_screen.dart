@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
 
     final enviroment = Enviroment.apiUrl;
 
-    print(enviroment);
+   
 
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -103,7 +103,8 @@ class _LoginForm extends ConsumerWidget {
               child: CustomFilledButton(
                 text: 'Ingresar',
                 buttonColor: Colors.black,
-                onPressed: () {
+                
+                onPressed: loginForm.isFormPosted ? null : () {
                   ref.read(LoginFormProvider.notifier).onFormSubmit();
                 },
               )),

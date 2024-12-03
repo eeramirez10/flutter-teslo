@@ -1,5 +1,7 @@
 //! 1 - state del provider
 
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
 import 'package:teslo_shop/features/auth/presentation/providers/auth_provider.dart';
@@ -70,10 +72,11 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
   onFormSubmit() async {
     _touchEveryField();
-    if(!state.isValid) return;
-    print(state.toString());
-
+    if (!state.isValid) return;
+    await Future.delayed(const Duration(milliseconds: 1000));
+    state = state.copyWith(isFormPosted: true);
     await loginUserCallback(state.email.value, state.password.value);
+    state = state.copyWith(isFormPosted: false);
   }
 
   _touchEveryField() {
