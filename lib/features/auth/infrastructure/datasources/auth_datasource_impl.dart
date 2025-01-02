@@ -9,6 +9,7 @@ class AuthDataSourceImpl extends AuthDataSource {
 
   @override
   Future<User> checkAuthStatus(String token) async {
+  
     try {
       final response = await dio.get('/auth/check-status',
           options: Options(headers: {'Authorization': 'bearer $token'}));

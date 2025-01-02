@@ -72,6 +72,7 @@ class LoginFormNotifier extends StateNotifier<LoginFormState> {
 
   onFormSubmit() async {
     _touchEveryField();
+    
     if (!state.isValid) return;
     await Future.delayed(const Duration(milliseconds: 1000));
     state = state.copyWith(isFormPosted: true);
